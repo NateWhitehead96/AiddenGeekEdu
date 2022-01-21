@@ -13,10 +13,13 @@ public class EnemyMovement : MonoBehaviour
 {
     public int moveSpeed;
     public Direction direction;
+
+    public float size; // the enemy size
     // Start is called before the first frame update
     void Start()
     {
-        
+        size = Random.Range(1, 8); // find a random size
+        transform.localScale = new Vector3(size, size, 1); // apply that size
     }
 
     // Update is called once per frame
