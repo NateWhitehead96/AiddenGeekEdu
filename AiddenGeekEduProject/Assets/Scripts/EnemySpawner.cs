@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject Enemy; // prefab enemy
+    public GameObject[] Enemy; // prefab enemy
 
     public float timer; // keep track how how fast enemies spawn
 
@@ -33,7 +33,9 @@ public class EnemySpawner : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, randomSpot); // make sure the spawner has a new random y value
             }
 
-            GameObject newFish = Instantiate(Enemy, transform.position, transform.rotation); // spawn enemy
+            int randomFish = Random.Range(0, Enemy.Length); // pick a random fish in our fish array
+
+            GameObject newFish = Instantiate(Enemy[randomFish], transform.position, transform.rotation); // spawn random enemy fish
             newFish.GetComponent<EnemyMovement>().direction = direction;
             // change the size
             // pick a random color

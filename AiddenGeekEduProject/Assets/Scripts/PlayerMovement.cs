@@ -10,10 +10,12 @@ public class PlayerMovement : MonoBehaviour
     public float YBounds;
 
     public float size; // of course the size of the player
+
+    private Animator animator; // the animation controller
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = GetComponent<Animator>(); // makes sure the animator is the one from this game object
     }
 
     // Update is called once per frame
@@ -24,18 +26,22 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.W) && transform.position.y < YBounds) // moving up
         {
             transform.position = new Vector3(transform.position.x, transform.position.y + moveSpeed * Time.deltaTime);
+            animator.SetInteger("Direction", 1); // sets the animation
         }
         if (Input.GetKey(KeyCode.S) && transform.position.y > -YBounds) // moving down
         {
             transform.position = new Vector3(transform.position.x, transform.position.y - moveSpeed * Time.deltaTime);
+            animator.SetInteger("Direction", 3); // sets the animation
         }
         if (Input.GetKey(KeyCode.A) && transform.position.x > -XBounds) // moving left
         {
             transform.position = new Vector3(transform.position.x - moveSpeed * Time.deltaTime, transform.position.y);
+            animator.SetInteger("Direction", 4); // sets the animation
         }
         if (Input.GetKey(KeyCode.D) && transform.position.x < XBounds) // moving right
         {
             transform.position = new Vector3(transform.position.x + moveSpeed * Time.deltaTime, transform.position.y);
+            animator.SetInteger("Direction", 2); // sets the animation
         }
     }
 
