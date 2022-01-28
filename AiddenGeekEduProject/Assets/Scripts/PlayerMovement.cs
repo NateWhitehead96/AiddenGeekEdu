@@ -10,8 +10,12 @@ public class PlayerMovement : MonoBehaviour
     public float YBounds;
 
     public float size; // of course the size of the player
+    public static int sizeCounter; // a counter for how many fish we eat
+    public static float score; // our score that can be accessed by every other script
 
     private Animator animator; // the animation controller
+
+    public GameObject fishBones; // the fishy bones
     // Start is called before the first frame update
     void Start()
     {
@@ -49,10 +53,24 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Fish")) // check to see if what we're colliding with is tagged at fish
         {
-            if(size > collision.gameObject.GetComponent<EnemyMovement>().size) // we're bigger than the other fish
+
+            EnemyMovement fish = collision.gameObject.GetComponent<EnemyMovement>(); // we're gaining access to the fish we collide with
+
+            if(size > fish.size) // we're bigger than the other fish
             {
+
+                score += fish.size * 5; // add to our score (fish size * 5)
+                Instantiate(fishBones, transform.position, transform.rotation); // spawn the dead fish out our bum bum
+
                 Destroy(collision.gameObject); // destroy the fish
-                size += 0.1f; // increase size
+
+                sizeCounter++; // increase the counter
+                if(sizeCounter >= 5)
+                {
+                    size += 0.1f; // increase size
+                    sizeCounter = 0; // reset the size counter
+                }
+
                 print("Ate the fish :)"); // get the score
             }
             // else we die but we wont do that just yet
