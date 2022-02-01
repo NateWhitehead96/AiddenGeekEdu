@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     public int moveSpeed;
@@ -60,18 +60,23 @@ public class PlayerMovement : MonoBehaviour
             {
 
                 score += fish.size * 5; // add to our score (fish size * 5)
-                Instantiate(fishBones, transform.position, transform.rotation); // spawn the dead fish out our bum bum
+                GameObject newBones = Instantiate(fishBones, transform.position, transform.rotation); // spawn the dead fish out our bum bum as a new local variable
+                newBones.GetComponent<Transform>().localScale = new Vector3(fish.size / 3, fish.size / 3, 1); // set the fishbones size to be the eaten fish size
 
                 Destroy(collision.gameObject); // destroy the fish
 
                 sizeCounter++; // increase the counter
                 if(sizeCounter >= 5)
                 {
-                    size += 0.1f; // increase size
+                    size += 0.3f; // increase size
                     sizeCounter = 0; // reset the size counter
                 }
 
                 print("Ate the fish :)"); // get the score
+            }
+            else
+            {
+                SceneManager.LoadScene("GameOver"); // we die, open gave over scene
             }
             // else we die but we wont do that just yet
         }
