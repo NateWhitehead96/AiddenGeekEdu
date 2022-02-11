@@ -29,7 +29,7 @@ public class Coin : MonoBehaviour
             direction = 1;
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         Destroy(gameObject); // for now just destroy when anything touches
     }

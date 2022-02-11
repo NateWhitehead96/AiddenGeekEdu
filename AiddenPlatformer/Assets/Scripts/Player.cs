@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
         animator.SetBool("isWalking", walking); // switch to walking animation
         animator.SetBool("isJumping", jumping); // switch to jumping animation
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && jumping == false)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse); // jump function
             jumping = true;
@@ -58,5 +58,13 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         jumping = false; // when we collide with anything, we're more or less grounded
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Head")) // if we're jumping on an enemy head
+        {
+            Destroy(collision.transform.parent.gameObject); // destroying the spider, which is the parent of the head
+        }
     }
 }
