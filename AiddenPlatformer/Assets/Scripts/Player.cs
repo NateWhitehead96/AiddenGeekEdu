@@ -8,11 +8,15 @@ public class Player : MonoBehaviour
     public float jumpForce; // how high we jump
     public Rigidbody2D rb; // allowing us to add forces to player
     public SpriteRenderer sprite; // help flip the sprite to the right direction
+    public Transform Checkpoint; // will be our current respawn point
 
     private Animator animator; // animations controller
     // these bools will help us transition between animations
     public bool walking;
     public bool jumping;
+
+    public int Health = 3;
+    public int Coins;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +69,10 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Head")) // if we're jumping on an enemy head
         {
             Destroy(collision.transform.parent.gameObject); // destroying the spider, which is the parent of the head
+        }
+        if (collision.gameObject.CompareTag("Deathplane"))
+        {
+            transform.position = Checkpoint.position; // reset our position
         }
     }
 }

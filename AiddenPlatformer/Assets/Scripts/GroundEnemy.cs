@@ -33,4 +33,12 @@ public class GroundEnemy : MonoBehaviour
             sprite.flipX = true;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<Player>().Health--; // lose 1 health
+        }
+    }
 }

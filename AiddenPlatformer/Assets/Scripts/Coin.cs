@@ -31,6 +31,7 @@ public class Coin : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        FindObjectOfType<Player>().Coins++; // gain 1 coin
         Destroy(gameObject); // for now just destroy when anything touches
     }
 }
