@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Head
   - Deathplane
+  - Door
+  - Ladder
   layers:
   - Default
   - TransparentFX
