@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     // these bools will help us transition between animations
     public bool walking;
     public bool jumping;
+    public bool climbing;
 
     public int Health = 3;
     public int Coins;
@@ -51,11 +52,20 @@ public class Player : MonoBehaviour
 
         animator.SetBool("isWalking", walking); // switch to walking animation
         animator.SetBool("isJumping", jumping); // switch to jumping animation
-
+        // -------------- Jumping input -------------- //
         if (Input.GetKeyDown(KeyCode.Space) && jumping == false)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse); // jump function
             jumping = true;
+        }
+        // ------------- Climbing ladders input -------------- //
+        if(climbing == true && Input.GetKey(KeyCode.W)) // we're on a ladder going up
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y + moveSpeed * Time.deltaTime);
+        }
+        if(climbing == true && Input.GetKey(KeyCode.S)) // on the ladder going down
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y - moveSpeed * Time.deltaTime);
         }
     }
 
@@ -73,6 +83,28 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Deathplane"))
         {
             transform.position = Checkpoint.position; // reset our position
+        }
+        if(collision.gameObject.name == "Heart")
+        {
+            Health++; // add to health
+            if(Health > 3) // to make sure the health is capped
+            {
+                Health = 3;
+            }
+            Destroy(collision.gameObject); // destroy heart
+        }
+        if (collision.gameObject.CompareTag("Ladder")) // on the ladder
+        {
+            climbing = true; // we're now able to climb
+            rb.gravityScale = 0; // disable gravity while on ladder
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ladder")) // left the ladder
+        {
+            climbing = false;
+            rb.gravityScale = 1;
         }
     }
 }
