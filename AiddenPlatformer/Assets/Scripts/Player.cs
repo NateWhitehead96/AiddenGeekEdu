@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
 
     public int Health = 3;
     public int Coins;
+
+    public bool hasKey; // player collected key of the level
     // Start is called before the first frame update
     void Start()
     {
@@ -84,7 +86,7 @@ public class Player : MonoBehaviour
         {
             transform.position = Checkpoint.position; // reset our position
         }
-        if(collision.gameObject.name == "Heart")
+        if(collision.gameObject.CompareTag("Heart")) 
         {
             Health++; // add to health
             if(Health > 3) // to make sure the health is capped
@@ -97,6 +99,11 @@ public class Player : MonoBehaviour
         {
             climbing = true; // we're now able to climb
             rb.gravityScale = 0; // disable gravity while on ladder
+        }
+        if(collision.gameObject.name == "Key")
+        {
+            hasKey = true;
+            Destroy(collision.gameObject);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
