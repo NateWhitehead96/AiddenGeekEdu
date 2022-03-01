@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
 
         animator.SetBool("isWalking", walking); // switch to walking animation
         animator.SetBool("isJumping", jumping); // switch to jumping animation
+        animator.SetBool("isClimbing", climbing); // switch to the climb animation
         // -------------- Jumping input -------------- //
         if (Input.GetKeyDown(KeyCode.Space) && jumping == false)
         {
@@ -69,6 +70,18 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y - moveSpeed * Time.deltaTime);
         }
+    }
+
+    public void HurtPlayer() // the damage function that enemies will use
+    {
+        StartCoroutine(HurtAnimation());
+    }
+    IEnumerator HurtAnimation()
+    {
+        animator.SetBool("isHurt", true); // play animation
+        Health--; // take damage
+        yield return new WaitForSeconds(1);
+        animator.SetBool("isHurt", false); // turn hurt animation off
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

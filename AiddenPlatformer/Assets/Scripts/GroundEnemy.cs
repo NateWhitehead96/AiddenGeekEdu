@@ -38,7 +38,7 @@ public class GroundEnemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Player>().Health--; // lose 1 health
+            collision.gameObject.GetComponent<Player>().HurtPlayer(); // play the hurt player stuff
         }
     }
 }
