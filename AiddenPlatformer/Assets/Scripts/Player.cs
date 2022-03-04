@@ -79,6 +79,7 @@ public class Player : MonoBehaviour
     IEnumerator HurtAnimation()
     {
         animator.SetBool("isHurt", true); // play animation
+        SoundManager.instance.playerHurt.Play(); // play the hurt sound
         Health--; // take damage
         yield return new WaitForSeconds(1);
         animator.SetBool("isHurt", false); // turn hurt animation off
@@ -93,7 +94,9 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Head")) // if we're jumping on an enemy head
         {
-            Destroy(collision.transform.parent.gameObject); // destroying the spider, which is the parent of the head
+            collision.transform.GetComponentInParent<GroundEnemy>().EnemyDie(); // show the spider dead
+            Destroy(collision.gameObject);
+            //Destroy(collision.transform.parent.gameObject); // destroying the spider, which is the parent of the head
         }
         if (collision.gameObject.CompareTag("Deathplane"))
         {

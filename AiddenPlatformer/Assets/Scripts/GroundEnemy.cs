@@ -11,6 +11,8 @@ public class GroundEnemy : MonoBehaviour
     public float rightBounds; // how far right it can travel
 
     public SpriteRenderer sprite; // allows us to flip the sprite based on direction
+
+    public Sprite deathSprite; // the sprite to show when the enemy dies
     // Start is called before the first frame update
     void Start()
     {
@@ -40,5 +42,13 @@ public class GroundEnemy : MonoBehaviour
         {
             collision.gameObject.GetComponent<Player>().HurtPlayer(); // play the hurt player stuff
         }
+    }
+
+    public void EnemyDie()
+    {
+        GetComponent<Animator>().enabled = false; // disable the movement animation
+        GetComponent<BoxCollider2D>().enabled = false;
+        sprite.sprite = deathSprite;
+        moveSpeed = 0;
     }
 }
