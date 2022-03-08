@@ -10,10 +10,13 @@ public class DoorScript : MonoBehaviour
 
     public bool needsKey; // if the door requires a key to enter
     public int nextLevel; // the level we unlock
+
+    public SpriteRenderer sprite; // the renderer that shows the sprite
+    public Sprite OpenDoorSprite; // sprite to switch to when we open the door
     // Start is called before the first frame update
     void Start()
     {
-        
+        sprite = GetComponent<SpriteRenderer>(); // make sure sprite renderer is this game objects
     }
 
     // Update is called once per frame
@@ -44,6 +47,13 @@ public class DoorScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Player")) // the player is inside the door
         {
             inDoor = true;
+        }
+        if(needsKey == true && collision.gameObject.CompareTag("Player"))
+        {
+            if (collision.gameObject.GetComponent<Player>().hasKey)
+            {
+                sprite.sprite = OpenDoorSprite; // set the sprite of the door to the open door sprite
+            }
         }
     }
 

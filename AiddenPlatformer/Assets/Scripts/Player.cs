@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
 
     public int Health = 3;
     public int Coins;
+    public int Score;
+    public float levelTimer;
 
     public bool hasKey; // player collected key of the level
     // Start is called before the first frame update
@@ -31,6 +33,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        levelTimer -= Time.deltaTime; // goes down
         if (Input.GetKey(KeyCode.D)) // going right with the D key
         {
             transform.position = new Vector3(transform.position.x + moveSpeed * Time.deltaTime, transform.position.y);
@@ -96,6 +99,7 @@ public class Player : MonoBehaviour
         {
             collision.transform.GetComponentInParent<GroundEnemy>().EnemyDie(); // show the spider dead
             Destroy(collision.gameObject);
+            Score += 100;
             //Destroy(collision.transform.parent.gameObject); // destroying the spider, which is the parent of the head
         }
         if (collision.gameObject.CompareTag("Deathplane"))
@@ -104,6 +108,7 @@ public class Player : MonoBehaviour
         }
         if(collision.gameObject.CompareTag("Heart")) 
         {
+            Score += 150;
             Health++; // add to health
             if(Health > 3) // to make sure the health is capped
             {
@@ -118,6 +123,7 @@ public class Player : MonoBehaviour
         }
         if(collision.gameObject.name == "Key")
         {
+            Score += 200;
             hasKey = true;
             Destroy(collision.gameObject);
         }

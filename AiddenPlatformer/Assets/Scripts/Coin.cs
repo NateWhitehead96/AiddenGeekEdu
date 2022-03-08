@@ -35,6 +35,7 @@ public class Coin : MonoBehaviour
         {
             SoundManager.instance.coinPickup.Play(); // play the pickup sound
             FindObjectOfType<Player>().Coins++; // gain 1 coin
+            FindObjectOfType<Player>().Score += 50;
             Destroy(gameObject); 
         }
     }

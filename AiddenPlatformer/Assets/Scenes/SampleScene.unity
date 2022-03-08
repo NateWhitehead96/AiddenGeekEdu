@@ -3120,6 +3120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelsBeaten: 0
+  Lives: 5
 --- !u!4 &767461209
 Transform:
   m_ObjectHideFlags: 0
@@ -4884,7 +4885,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3015883018749221715, guid: 3340df76f5f69c94ba92894bed8b0d11, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1899016bb1c5d714b955f8ad490ee883, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4926,7 +4927,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 2}
+    oldSize: {x: 1.015625, y: 2}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4951,6 +4952,8 @@ MonoBehaviour:
   inDoor: 0
   needsKey: 1
   nextLevel: 2
+  sprite: {fileID: 0}
+  OpenDoorSprite: {fileID: -3015883018749221715, guid: 3340df76f5f69c94ba92894bed8b0d11, type: 3}
 --- !u!4 &1652104276 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6407921293095746863, guid: c90c0ac1a9390274e9f6938397b4c774, type: 3}
@@ -7992,6 +7995,10 @@ PrefabInstance:
       propertyPath: Checkpoint
       value: 
       objectReference: {fileID: 1152921593}
+    - target: {fileID: 9011546436025173561, guid: 2ba47212e0fc1084aaf50ff08c36a1ce, type: 3}
+      propertyPath: levelTimer
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 9011546436025173564, guid: 2ba47212e0fc1084aaf50ff08c36a1ce, type: 3}
       propertyPath: m_Name
       value: Player

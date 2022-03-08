@@ -10,6 +10,10 @@ public class HUD : MonoBehaviour
     public Image HeartThree;
     public Text CoinAmount;
 
+    public Text Lives;
+    public Text Score;
+    public Text Timer;
+
     public Sprite EmptyHeart;
     public Sprite FullHeart;
 
@@ -24,6 +28,9 @@ public class HUD : MonoBehaviour
     void Update()
     {
         CoinAmount.text = player.Coins.ToString(); // constantly update our coins
+        Lives.text = GameManager.instance.Lives.ToString();
+        Score.text = "Score: " + player.Score.ToString();
+        Timer.text = "Time: " + player.levelTimer.ToString("#.00");
 
         // life checking
         if(player.Health == 3) // we are at full health
