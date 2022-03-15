@@ -9,6 +9,7 @@ TagManager:
   - Door
   - Ladder
   - Heart
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

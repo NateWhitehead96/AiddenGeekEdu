@@ -84,6 +84,13 @@ public class Player : MonoBehaviour
         animator.SetBool("isHurt", true); // play animation
         SoundManager.instance.playerHurt.Play(); // play the hurt sound
         Health--; // take damage
+        if(Health <= 0)
+        {
+            GameManager.instance.Lives--; // subtract a life
+            // check to see if lives is less than 0
+            transform.position = Checkpoint.position; // reset to last checkpoint
+            Health = 3; // reset health back to 3
+        }
         yield return new WaitForSeconds(1);
         animator.SetBool("isHurt", false); // turn hurt animation off
     }
@@ -105,6 +112,8 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Deathplane"))
         {
             transform.position = Checkpoint.position; // reset our position
+            GameManager.instance.Lives--;
+            Health = 3;
         }
         if(collision.gameObject.CompareTag("Heart")) 
         {
@@ -121,11 +130,15 @@ public class Player : MonoBehaviour
             climbing = true; // we're now able to climb
             rb.gravityScale = 0; // disable gravity while on ladder
         }
-        if(collision.gameObject.name == "Key")
+        if(collision.gameObject.name == "Key" && hasKey == false) // make sure we dont get more points than 1 time
         {
             Score += 200;
             hasKey = true;
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject); // make sure we dont destroy the key
+        }
+        if (collision.gameObject.CompareTag("Checkpoint")) // walking through checkpoint
+        {
+            Checkpoint = collision.gameObject.transform; // sets the checkpoint to the position of the new checkpoint
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
