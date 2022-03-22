@@ -27,7 +27,8 @@ public class HUD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CoinAmount.text = player.Coins.ToString(); // constantly update our coins
+        //CoinAmount.text = player.Coins.ToString(); // constantly update our coins
+        CoinAmount.text = GameManager.instance.Coins.ToString(); // now feed the coins from GameManager
         Lives.text = GameManager.instance.Lives.ToString();
         Score.text = "Score: " + player.Score.ToString();
         Timer.text = "Time: " + player.levelTimer.ToString("#.00");

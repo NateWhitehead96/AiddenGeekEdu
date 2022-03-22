@@ -227,3 +227,4 @@ MonoBehaviour:
   leftBounds: 14.4
   rightBounds: 17.1
   sprite: {fileID: 0}
+  deathSprite: {fileID: 21300000, guid: eaab75c58f4c6b34e83a45af30797131, type: 3}

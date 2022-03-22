@@ -34,7 +34,8 @@ public class Coin : MonoBehaviour
         if (collision.gameObject.CompareTag("Player")) // if the player touches the coin
         {
             SoundManager.instance.coinPickup.Play(); // play the pickup sound
-            FindObjectOfType<Player>().Coins++; // gain 1 coin
+            //FindObjectOfType<Player>().Coins++; // gain 1 coin
+            GameManager.instance.GainCoin(1); // right now just 1, but if we want more coin types we can change this value
             FindObjectOfType<Player>().Score += 50;
             Destroy(gameObject); 
         }

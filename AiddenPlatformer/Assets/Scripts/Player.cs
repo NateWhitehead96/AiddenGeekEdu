@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     public bool climbing;
 
     public int Health = 3;
-    public int Coins;
+    //public int Coins; Coins will now be stored in Game Manager
     public int Score;
     public float levelTimer;
 
