@@ -133,3 +133,4 @@ MonoBehaviour:
   direction: 1
   topBounds: 0
   botBounds: 0
+  value: 1

@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        LoadGame(); // load our data when we start the game
     }
 
     // Update is called once per frame
@@ -41,6 +41,22 @@ public class GameManager : MonoBehaviour
         {
             Lives++; // increase lives
             Coins -= 100; // subtract 100 from our coins (this allows for even being over 100 to save the extra coins)
+        }
+    }
+
+    public void SaveGame() // save our data
+    {
+        PlayerPrefs.SetInt("Lives", Lives); // save our current number of lives
+        PlayerPrefs.SetInt("Coins", Coins); // save our current amount of coins
+        PlayerPrefs.SetInt("LevelsBeaten", LevelsBeaten); // save our game progression
+    }
+    public void LoadGame() // load our data
+    {
+        if (PlayerPrefs.HasKey("Lives")) // check to see if we have any saved data
+        {
+            Lives = PlayerPrefs.GetInt("Lives"); // set our lives to saved lives
+            Coins = PlayerPrefs.GetInt("Coins"); // set our coins to the saved coins
+            LevelsBeaten = PlayerPrefs.GetInt("LevelsBeaten"); // set our level progression to the saved progression
         }
     }
 }

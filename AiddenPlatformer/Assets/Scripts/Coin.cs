@@ -8,6 +8,8 @@ public class Coin : MonoBehaviour
     public int direction = 1;
     public float topBounds;
     public float botBounds;
+
+    public int value; // the coins value
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +37,7 @@ public class Coin : MonoBehaviour
         {
             SoundManager.instance.coinPickup.Play(); // play the pickup sound
             //FindObjectOfType<Player>().Coins++; // gain 1 coin
-            GameManager.instance.GainCoin(1); // right now just 1, but if we want more coin types we can change this value
+            GameManager.instance.GainCoin(value); // right now just 1, but if we want more coin types we can change this value
             FindObjectOfType<Player>().Score += 50;
             Destroy(gameObject); 
         }

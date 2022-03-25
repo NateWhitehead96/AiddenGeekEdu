@@ -30,6 +30,7 @@ public class DoorScript : MonoBehaviour
                 {
                     GameManager.instance.LevelsBeaten = nextLevel;
                 }
+                GameManager.instance.SaveGame(); // save all of our data when we complete a level
                 SceneManager.LoadScene(LevelToLoad); // loading likely the hubworld
             }
         }
