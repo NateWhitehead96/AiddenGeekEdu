@@ -31,18 +31,27 @@ public class DoorScript : MonoBehaviour
                     GameManager.instance.LevelsBeaten = nextLevel;
                 }
                 GameManager.instance.SaveGame(); // save all of our data when we complete a level
-                SceneManager.LoadScene(LevelToLoad); // loading likely the hubworld
+                StartCoroutine(SceneTransition()); // a coroutine to help with playing the scene transition
+                
             }
         }
         else // a door in our hub world
         {
             if (inDoor == true && Input.GetKeyDown(KeyCode.W) && GameManager.instance.LevelsBeaten >= LevelToLoad) // only go to next level if we've beaten previous level
             {
-                SceneManager.LoadScene(LevelToLoad); // load the level
+                StartCoroutine(SceneTransition());
             }
         }
         
     }
+
+    IEnumerator SceneTransition()
+    {
+        FindObjectOfType<TransitionCanvas>().anim.SetBool("fade", true); // make the canavs fade in
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(LevelToLoad);// loading likely the hubworld
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player")) // the player is inside the door

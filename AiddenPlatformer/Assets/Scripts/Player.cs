@@ -107,6 +107,7 @@ public class Player : MonoBehaviour
             collision.transform.GetComponentInParent<GroundEnemy>().EnemyDie(); // show the spider dead
             Destroy(collision.gameObject);
             Score += 100;
+            rb.AddForce(Vector3.up * 10, ForceMode2D.Impulse);
             //Destroy(collision.transform.parent.gameObject); // destroying the spider, which is the parent of the head
         }
         if (collision.gameObject.CompareTag("Deathplane"))
