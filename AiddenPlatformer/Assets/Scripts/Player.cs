@@ -141,6 +141,12 @@ public class Player : MonoBehaviour
         {
             Checkpoint = collision.gameObject.transform; // sets the checkpoint to the position of the new checkpoint
         }
+        if (collision.gameObject.CompareTag("Shell"))
+        {
+            collision.transform.GetComponentInParent<Snail>().HideInShell(); // the shell is a child
+            Score += 100;
+            rb.AddForce(Vector3.up * 10, ForceMode2D.Impulse);
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
