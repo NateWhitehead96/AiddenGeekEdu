@@ -98,6 +98,17 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         jumping = false; // when we collide with anything, we're more or less grounded
+        if (collision.gameObject.GetComponent<FloatingPlatform>())
+        {
+            transform.parent = collision.gameObject.transform; // we parent player to the platform
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<FloatingPlatform>())
+        {
+            transform.parent = null; // make the player unparented
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
