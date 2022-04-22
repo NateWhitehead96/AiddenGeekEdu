@@ -11,6 +11,9 @@ public class Portal : MonoBehaviour
 
     public bool activated; // if the player has used the portal
     public float timer; // for deactivating the button
+
+    public bool canSpin; // to just know if this can spin or not
+    public float rotateSpeed; // how fast it rotates
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +23,10 @@ public class Portal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (canSpin) // if this thing can spin
+        {
+            transform.Rotate(Vector3.forward * rotateSpeed * Time.deltaTime); // rotate clockwise
+        }
         if (activated) // if the player has teleported
         {
             timer += Time.deltaTime;
