@@ -22,9 +22,13 @@ public class Player : MonoBehaviour
     public float levelTimer;
 
     public bool hasKey; // player collected key of the level
+
+    public GameObject PauseCanvas; // access to pause canvas
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1; // to make sure the game isn't paused when we open a new scene
+        PauseCanvas.SetActive(false); // make sure pause canvas is hidden to start
         rb = GetComponent<Rigidbody2D>(); // links the rb variable to the gameobjects rigidbody
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -72,6 +76,21 @@ public class Player : MonoBehaviour
         if(climbing == true && Input.GetKey(KeyCode.S)) // on the ladder going down
         {
             transform.position = new Vector3(transform.position.x, transform.position.y - moveSpeed * Time.deltaTime);
+        }
+
+        // --------------- Pause Input ------------------- //
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (PauseCanvas.activeInHierarchy) // is the pause canvas active
+            {
+                Time.timeScale = 1;
+                PauseCanvas.SetActive(false);
+            }
+            else // pause canvas isn't active
+            {
+                Time.timeScale = 0;
+                PauseCanvas.SetActive(true);
+            }
         }
     }
 
