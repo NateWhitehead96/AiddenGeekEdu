@@ -19,7 +19,7 @@ public class Spinner : MonoBehaviour
     void Update()
     {
         RaycastHit2D hit = Physics2D.Raycast(raycastPosition.position, Vector3.down, Mathf.Infinity); // create the raycast and store it in hit
-
+        Debug.DrawRay(raycastPosition.position, Vector3.down * 1000); // should draw a debug ray to match the above ray we cast
         if(hit.collider.gameObject.CompareTag("Player") && fellDown == false) // raycast see player and hasnt fallen yet
         {
             rb.gravityScale = 15;
@@ -42,5 +42,10 @@ public class Spinner : MonoBehaviour
         {
             collision.gameObject.GetComponent<Player>().HurtPlayer(); // hurt player if they touch the spinner
         }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        rb.gravityScale = 0;
+        fellDown = true;
     }
 }
