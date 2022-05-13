@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public bool walking;
     public bool jumping;
     public bool climbing;
+    public bool swimming;
 
     public int Health = 3;
     //public int Coins; Coins will now be stored in Game Manager
@@ -63,6 +64,10 @@ public class Player : MonoBehaviour
         animator.SetBool("isJumping", jumping); // switch to jumping animation
         animator.SetBool("isClimbing", climbing); // switch to the climb animation
         // -------------- Jumping input -------------- //
+        if (swimming == true)
+        { 
+            jumping = false; //if we're in water we can jump unlimited amounts
+        } 
         if (Input.GetKeyDown(KeyCode.Space) && jumping == false)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse); // jump function
@@ -177,6 +182,13 @@ public class Player : MonoBehaviour
             Score += 100;
             rb.AddForce(Vector3.up * 10, ForceMode2D.Impulse);
         }
+        if (collision.gameObject.CompareTag("Water")) // colliding with water
+        {
+            swimming = true;
+            rb.gravityScale = 0.3f; // lower gravity
+            jumpForce = 3; // lower jump power
+            moveSpeed = 3; // lower move speed;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -184,6 +196,13 @@ public class Player : MonoBehaviour
         {
             climbing = false;
             rb.gravityScale = 1;
+        }
+        if (collision.gameObject.CompareTag("Water")) // colliding with water
+        {
+            swimming = false;
+            rb.gravityScale = 1; // bring back gravity
+            jumpForce = 5; // bring back jump power
+            moveSpeed = 5; // bring back move speed
         }
     }
 }

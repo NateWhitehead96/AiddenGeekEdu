@@ -11,6 +11,7 @@ TagManager:
   - Heart
   - Checkpoint
   - Shell
+  - Water
   layers:
   - Default
   - TransparentFX
