@@ -73,6 +73,10 @@ public class Player : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse); // jump function
             jumping = true;
         }
+        if(rb.velocity.y > 5) // cap jump velocity
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 5);
+        }
         // ------------- Climbing ladders input -------------- //
         if(climbing == true && Input.GetKey(KeyCode.W)) // we're on a ladder going up
         {
@@ -188,6 +192,7 @@ public class Player : MonoBehaviour
             rb.gravityScale = 0.3f; // lower gravity
             jumpForce = 3; // lower jump power
             moveSpeed = 3; // lower move speed;
+            //rb.velocity = Vector2.zero;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
