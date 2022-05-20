@@ -23,11 +23,13 @@ public class Blooper : MonoBehaviour
     // timer for movement
     public float timer;
     // sprite renderer for flipping
+    public SpriteRenderer sprite;
     // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<Player>().transform;
         rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -42,29 +44,55 @@ public class Blooper : MonoBehaviour
                 if(randDirection == 0) // move to the left
                 {
                     rb.AddForce(Vector2.left * horizontalForce, ForceMode2D.Impulse);
+                    sprite.flipX = false;
                 }
                 if(randDirection == 1) // move to the right
                 {
                     rb.AddForce(Vector2.right * horizontalForce, ForceMode2D.Impulse);
+                    sprite.flipX = true;
                 }
                 timer = 0; // reset timer
             }
             timer += Time.deltaTime;
             // local variable
             float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-            if(distanceToPlayer <= 12)
+            if(distanceToPlayer <= 12 && player.GetComponent<Player>().swimming == true)
             {
                 behaviour = BlooperBehaviour.chase;
+                rb.gravityScale = 0;
             }
         }
         if(behaviour == BlooperBehaviour.chase)
-        {   // move towards player if close
+        {
+            rb.velocity = Vector2.zero;
+            if(transform.position.x > player.position.x)
+                sprite.flipX = false;
+            if (transform.position.x < player.position.x)
+                sprite.flipX = true;
+            // move towards player if close
             transform.position = Vector3.MoveTowards(transform.position, player.position, horizontalForce * Time.deltaTime);
             float distanceToPlayer = Vector3.Distance(transform.position, player.position);
             if (distanceToPlayer >= 12)
             {
                 behaviour = BlooperBehaviour.wander;
+                rb.gravityScale = 0.2f;
             }
+        }
+
+        // if the player is being chased and jumps out of the water, reset the squid
+        if(player.GetComponent<Player>().swimming == false)
+        {
+            behaviour = BlooperBehaviour.wander;
+            rb.gravityScale = 0.2f;
+        }
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<Player>().HurtPlayer();
         }
     }
 }
