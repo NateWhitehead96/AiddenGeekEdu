@@ -41,7 +41,7 @@ public class BreathMeter : MonoBehaviour
         {
             if(currentBreath <= maxBreath)
             {
-                currentBreath += Time.deltaTime;
+                currentBreath += 3 * Time.deltaTime;
                 Breath.value = currentBreath;
             }
             else
@@ -50,4 +50,6 @@ public class BreathMeter : MonoBehaviour
             }
         }
     }
+
+   
 }

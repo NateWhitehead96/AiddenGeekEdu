@@ -12,6 +12,7 @@ TagManager:
   - Checkpoint
   - Shell
   - Water
+  - AirBubble
   layers:
   - Default
   - TransparentFX
