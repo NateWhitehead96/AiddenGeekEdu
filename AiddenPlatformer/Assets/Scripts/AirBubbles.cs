@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class AirBubbles : MonoBehaviour
 {
-    private void OnParticleCollision(GameObject other)
+    public float moveSpeed = 3;
+    public float timer;
+
+    private void Update()
     {
-        if (other.gameObject.CompareTag("Player"))
+        transform.Translate(Vector3.up * moveSpeed * Time.deltaTime); // move the bubble up/forward
+        if(timer >= 3)
         {
-            // full breath restore when we touch a bubble
-            other.gameObject.GetComponent<BreathMeter>().currentBreath = other.gameObject.GetComponent<BreathMeter>().maxBreath;
-            print("Gained breath");
+            Destroy(gameObject); // if the bubble has been around for 3 seconds, destroy it. We dont need to reset timer in this case
+        }
+        timer += Time.deltaTime;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<BreathMeter>())
+        {
+            BreathMeter playerBreath = collision.gameObject.GetComponent<BreathMeter>(); // storing the collisions component into this variable
+            playerBreath.currentBreath = playerBreath.maxBreath;
+            Destroy(gameObject); // destroy bubble
         }
     }
 }
