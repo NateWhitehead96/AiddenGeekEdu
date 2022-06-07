@@ -15,7 +15,11 @@ public class CheepCheep : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        sprite = GetComponent<SpriteRenderer>(); // make sure the spriterenderer is the one on this gameobject
+        if(direction > 0 && upDown == false)
+        {
+            sprite.flipX = true;
+        }
     }
 
     // Update is called once per frame
@@ -33,16 +37,18 @@ public class CheepCheep : MonoBehaviour
                 direction = 1;
             }
         }
-        if (upDown == false)
+        if (upDown == false) // horizontal movement
         {
             transform.position = new Vector3(transform.position.x + moveSpeed * direction * Time.deltaTime, transform.position.y);
             if (transform.position.x >= rightBounds)
             {
                 direction = -1;
+                sprite.flipX = false;
             }
             if (transform.position.x <= leftBounds)
             {
                 direction = 1;
+                sprite.flipX = true;
             }
         }
     }
