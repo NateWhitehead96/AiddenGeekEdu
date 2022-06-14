@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     public bool hasKey; // player collected key of the level
 
     public GameObject PauseCanvas; // access to pause canvas
+
+    public ParticleSystem dust;
     // Start is called before the first frame update
     void Start()
     {
@@ -100,6 +102,15 @@ public class Player : MonoBehaviour
                 Time.timeScale = 0;
                 PauseCanvas.SetActive(true);
             }
+        }
+
+        if(walking == true && jumping == false && swimming == false && climbing == false)
+        {
+            dust.Play();
+        }
+        if(walking == false || jumping == true || swimming == true || climbing == true)
+        {
+            dust.Stop();
         }
     }
 
