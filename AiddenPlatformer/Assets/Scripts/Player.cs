@@ -141,12 +141,22 @@ public class Player : MonoBehaviour
         {
             transform.parent = collision.gameObject.transform; // we parent player to the platform
         }
+        if (collision.gameObject.GetComponent<AutoscrollingPlatform>())
+        {
+            transform.parent = collision.gameObject.transform;
+            collision.gameObject.GetComponent<AutoscrollingPlatform>().playerOn = true; // tell it player is on
+        }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<FloatingPlatform>())
         {
             transform.parent = null; // make the player unparented
+        }
+        if (collision.gameObject.GetComponent<AutoscrollingPlatform>())
+        {
+            transform.parent = null;
+            collision.gameObject.GetComponent<AutoscrollingPlatform>().playerOn = false; // tell it player is off
         }
     }
 
