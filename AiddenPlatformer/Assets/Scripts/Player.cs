@@ -156,7 +156,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.GetComponent<AutoscrollingPlatform>())
         {
             transform.parent = null;
-            collision.gameObject.GetComponent<AutoscrollingPlatform>().playerOn = false; // tell it player is off
+            //collision.gameObject.GetComponent<AutoscrollingPlatform>().playerOn = false; // tell it player is off
         }
     }
 

@@ -20,6 +20,7 @@ public class Spinner : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(raycastPosition.position, Vector3.down, Mathf.Infinity); // create the raycast and store it in hit
         Debug.DrawRay(raycastPosition.position, Vector3.down * 1000); // should draw a debug ray to match the above ray we cast
+        if (hit.collider == null) return;
         if(hit.collider.gameObject.CompareTag("Player") && fellDown == false) // raycast see player and hasnt fallen yet
         {
             rb.gravityScale = 15;

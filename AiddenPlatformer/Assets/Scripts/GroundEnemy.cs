@@ -24,12 +24,12 @@ public class GroundEnemy : MonoBehaviour
     {
         transform.position = new Vector3(transform.position.x + moveSpeed * direction * Time.deltaTime, transform.position.y); // movement
 
-        if(transform.position.x > rightBounds)
+        if(transform.localPosition.x > rightBounds)
         {
             direction = -1;
             sprite.flipX = false;
         }
-        if(transform.position.x < leftBounds)
+        if(transform.localPosition.x < leftBounds)
         {
             direction = 1;
             sprite.flipX = true;
@@ -41,6 +41,19 @@ public class GroundEnemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<Player>().HurtPlayer(); // play the hurt player stuff
+        }
+        if (collision.gameObject.GetComponent<GroundEnemy>()) // when a ground enemy hits another flip it
+        {
+            if (direction == 1)
+            {
+                direction = -1;
+                sprite.flipX = false;
+            }
+            else
+            {
+                direction = 1;
+                sprite.flipX = true;
+            }
         }
     }
 

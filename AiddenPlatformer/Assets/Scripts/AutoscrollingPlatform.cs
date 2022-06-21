@@ -8,6 +8,8 @@ public class AutoscrollingPlatform : MonoBehaviour
     public int speed;
     public Transform[] movePoints; // an array of points this platform will move towards
     public int currentPoint; // to know which point the platform is currently going to
+
+    public GameObject Enemies; // array of our enemies we can spawn
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,10 @@ public class AutoscrollingPlatform : MonoBehaviour
             if(distance <= 0.1f)
             {
                 currentPoint++;
+                GameObject newEnemy = Instantiate(Enemies, new Vector3(transform.position.x, transform.position.y + 2), transform.rotation);
+                newEnemy.transform.parent = transform; // parent enemy to the platform
+                newEnemy.GetComponent<GroundEnemy>().rightBounds = 0.48f; // set bounds of the enemy
+                newEnemy.GetComponent<GroundEnemy>().leftBounds = -0.48f;
             }
         }
 
