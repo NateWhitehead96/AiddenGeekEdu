@@ -28,8 +28,8 @@ public class HUD : MonoBehaviour
     void Update()
     {
         //CoinAmount.text = player.Coins.ToString(); // constantly update our coins
-        CoinAmount.text = GameManager.instance.Coins.ToString(); // now feed the coins from GameManager
-        Lives.text = GameManager.instance.Lives.ToString();
+        CoinAmount.text = "x" + GameManager.instance.Coins.ToString(); // now feed the coins from GameManager
+        Lives.text = "x" + GameManager.instance.Lives.ToString();
         Score.text = "Score: " + player.Score.ToString();
         Timer.text = "Time: " + player.levelTimer.ToString("#.00");
 
