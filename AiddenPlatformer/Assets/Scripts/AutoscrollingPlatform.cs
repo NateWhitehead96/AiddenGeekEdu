@@ -10,10 +10,11 @@ public class AutoscrollingPlatform : MonoBehaviour
     public int currentPoint; // to know which point the platform is currently going to
 
     public GameObject Enemies; // array of our enemies we can spawn
+    public Vector3 startPos; // reset position
     // Start is called before the first frame update
     void Start()
     {
-        
+        startPos = transform.position;
     }
 
     // Update is called once per frame

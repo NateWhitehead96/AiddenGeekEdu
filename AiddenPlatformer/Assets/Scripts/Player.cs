@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -127,6 +128,12 @@ public class Player : MonoBehaviour
         {
             GameManager.instance.Lives--; // subtract a life
             // check to see if lives is less than 0
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level4"))
+            {
+                FindObjectOfType<AutoscrollingPlatform>().transform.position = FindObjectOfType<AutoscrollingPlatform>().startPos;
+                FindObjectOfType<AutoscrollingPlatform>().playerOn = false;
+                transform.parent = null;
+            }
             transform.position = Checkpoint.position; // reset to last checkpoint
             Health = 3; // reset health back to 3
         }
@@ -176,7 +183,7 @@ public class Player : MonoBehaviour
             GameManager.instance.Lives--;
             Health = 3;
         }
-        if(collision.gameObject.CompareTag("Heart")) 
+        if (collision.gameObject.CompareTag("Heart")) 
         {
             Score += 150;
             Health++; // add to health
