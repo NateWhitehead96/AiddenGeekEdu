@@ -36,6 +36,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>(); // links the rb variable to the gameobjects rigidbody
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        Checkpoint = transform; // our first checkpoint aka spawn point will be whatever the players initial position is
     }
 
     // Update is called once per frame
@@ -132,6 +133,7 @@ public class Player : MonoBehaviour
             {
                 FindObjectOfType<AutoscrollingPlatform>().transform.position = FindObjectOfType<AutoscrollingPlatform>().startPos;
                 FindObjectOfType<AutoscrollingPlatform>().playerOn = false;
+                FindObjectOfType<AutoscrollingPlatform>().currentPoint = Checkpoint.gameObject.GetComponent<Level4Checkpoint>().platformPoint;
                 transform.parent = null;
             }
             transform.position = Checkpoint.position; // reset to last checkpoint
@@ -152,6 +154,27 @@ public class Player : MonoBehaviour
         {
             transform.parent = collision.gameObject.transform;
             collision.gameObject.GetComponent<AutoscrollingPlatform>().playerOn = true; // tell it player is on
+        }
+        if (collision.gameObject.CompareTag("Hazard"))
+        {
+            switch (Health)
+            {
+                case 1: // if we have 1 health hurt player 1 time
+                    HurtPlayer();
+                    break;
+                case 2: // if we have 2 health hurt player 2 times
+                    HurtPlayer();
+                    HurtPlayer();
+                    break;
+                case 3: // if we have 3 health hurt player 3 times
+                    HurtPlayer();
+                    HurtPlayer();
+                    HurtPlayer();
+                    break;
+                default:
+                    print("Hit default break");
+                    break;
+            }
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
