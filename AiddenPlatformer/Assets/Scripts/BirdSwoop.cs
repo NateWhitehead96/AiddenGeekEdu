@@ -13,10 +13,11 @@ public class BirdSwoop : MonoBehaviour
     float timer;
     public float swoopTime;
     Vector2 hitDirection; // the direction the raycast is fired
+    float birdHeight; // resting Y postion
     // Start is called before the first frame update
     void Start()
     {
-        
+        birdHeight = transform.position.y;
     }
 
     // Update is called once per frame
@@ -49,6 +50,7 @@ public class BirdSwoop : MonoBehaviour
                 seePlayer = false; // dont see player anymore
                 transform.rotation = Quaternion.Euler(0, 0, -90); // because I rotate my bird I want to put it back to its original rotation
                 rotatePoint = Vector3.zero; // reset rotate point
+                transform.position = new Vector3(transform.position.x, birdHeight);
             }
         }
 
@@ -71,6 +73,14 @@ public class BirdSwoop : MonoBehaviour
                 seePlayer = true; // we now see player for the swoop
                 rotatePoint = new Vector3(hit.collider.transform.position.x, hit.collider.transform.position.y + 2); // set a point
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<Player>())
+        {
+            collision.gameObject.GetComponent<Player>().HurtPlayer();
         }
     }
 }
