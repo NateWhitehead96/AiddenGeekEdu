@@ -18,21 +18,23 @@ public class BossFist : MonoBehaviour
     public bool attacking; // to help with knowing if the fists deal damage
     public bool stunned; // to help keep fists on the ground
     public Rigidbody2D rb; // to help with manipulating its gravity
+    public Transform restingPosition; // the empty gameobject next to our boss head
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // link the rigidbody
-        startPosition = transform.position; // set our start pos to be our original position
+        //startPosition = transform.position; // set our start pos to be our original position
     }
 
     // Update is called once per frame
     void Update()
     {
+        startPosition = restingPosition.position; // make sure the startpos is always these empty game object positions
         // ---- Resetting ---- //
         if(brain == BossBrain.Resetting)
         {
             rb.velocity = Vector2.zero; // reset the velocity of the fist
-            transform.position = Vector3.MoveTowards(transform.position, startPosition, Time.deltaTime); // move fist back to start
+            transform.position = Vector3.MoveTowards(transform.position, startPosition, 4 * Time.deltaTime); // move fist back to start
             float distance = Vector3.Distance(transform.position, startPosition); // calculate distance
             if(distance <= 0.1f) // when fist is back at start position
             {
