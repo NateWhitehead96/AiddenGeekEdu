@@ -16,6 +16,8 @@ public class BossTrigger : MonoBehaviour
     // our new shake variables, we dont need to set them in the inspector so we'll make them all private
     int direction = 1;
     float left, right;
+
+    public PlayableDirector bossDeath; // for when the boss dies
     // Start is called before the first frame update
     void Start()
     {
@@ -62,5 +64,24 @@ public class BossTrigger : MonoBehaviour
             director.Play();
         }
         GetComponent<BoxCollider2D>().enabled = false; // disable the collider
+    }
+
+    public void BossDead()
+    {
+        bossDeath.Play(); // animation
+        StartCoroutine("DeleteBoss");
+        
+    }
+
+    IEnumerator DeleteBoss()
+    {
+        yield return new WaitForSeconds(7);
+        for (int i = 0; i < bossPieces.Length; i++) // hide all the boss pieces
+        {
+            bossPieces[i].SetActive(false);
+        }
+        wall.SetActive(false); // hide walls
+        bossCanvas.SetActive(false); // hide canvas
+        
     }
 }
