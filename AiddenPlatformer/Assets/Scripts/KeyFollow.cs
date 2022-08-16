@@ -36,4 +36,15 @@ public class KeyFollow : MonoBehaviour
             GetComponent<ItemMovement>().enabled = false; // disable other movements
         }
     }
+    // this on collision will only be for our key gem, doing the exact same as above
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            player = collision.gameObject.transform; // set player transfrom dynamicly
+            collected = true;
+            GetComponent<ItemMovement>().enabled = false; // disable other movements
+        }
+        GetComponent<Rigidbody2D>().gravityScale = 0; // disable gravity
+    }
 }

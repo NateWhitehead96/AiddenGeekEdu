@@ -73,12 +73,12 @@ public class BossScript : MonoBehaviour
                 //healthChunks[4].SetActive(false);
                 // for now we can destroy the boss, later we will make it either change forms or activate a cutscene
                 //Destroy(gameObject);
-                phaseActive = true;
-                for (int i = 0; i < healthChunks.Length; i++)
+                phaseActive = true; // activate the 2nd phase
+                for (int i = 0; i < healthChunks.Length; i++) // restore all health bars
                 {
                     healthChunks[i].SetActive(true);
                 }
-                health = 5;
+                health = 5; // restore health to 5
             }
         }
     }

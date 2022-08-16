@@ -18,6 +18,7 @@ public class BossTrigger : MonoBehaviour
     float left, right;
 
     public PlayableDirector bossDeath; // for when the boss dies
+    public GameObject keyGem; // our key to opening the final door :)
     // Start is called before the first frame update
     void Start()
     {
@@ -70,18 +71,18 @@ public class BossTrigger : MonoBehaviour
     {
         bossDeath.Play(); // animation
         StartCoroutine("DeleteBoss");
-        
     }
 
     IEnumerator DeleteBoss()
     {
-        yield return new WaitForSeconds(7);
+        bossCanvas.SetActive(false); // hide canvas
+        yield return new WaitForSeconds(6.4f);
         for (int i = 0; i < bossPieces.Length; i++) // hide all the boss pieces
         {
             bossPieces[i].SetActive(false);
         }
         wall.SetActive(false); // hide walls
-        bossCanvas.SetActive(false); // hide canvas
-        
+        keyGem.SetActive(true); // show the gem, could even give it some oomph
+        //keyGem.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 5, ForceMode2D.Impulse); // the oomph
     }
 }

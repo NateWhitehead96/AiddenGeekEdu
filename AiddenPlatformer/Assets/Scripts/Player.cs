@@ -136,6 +136,10 @@ public class Player : MonoBehaviour
                 FindObjectOfType<AutoscrollingPlatform>().currentPoint = Checkpoint.gameObject.GetComponent<Level4Checkpoint>().platformPoint;
                 transform.parent = null;
             }
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level5")) // if we die to boss, simply restart the level
+            {
+                SceneManager.LoadScene("Level5");
+            }
             transform.position = Checkpoint.position; // reset to last checkpoint
             Health = 3; // reset health back to 3
         }
