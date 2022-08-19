@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public bool jumping;
     public bool climbing;
     public bool swimming;
+    public bool gemJump; // specific bool for the boss level
 
     public int Health = 3;
     //public int Coins; Coins will now be stored in Game Manager
@@ -43,7 +44,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         levelTimer -= Time.deltaTime; // goes down
-        if (Input.GetKey(KeyCode.D)) // going right with the D key
+        if (Input.GetKey(KeyCode.D) && gemJump == false) // going right with the D key
         {
             transform.position = new Vector3(transform.position.x + moveSpeed * Time.deltaTime, transform.position.y);
             sprite.flipX = false; // it make sure it faces right 
@@ -53,7 +54,7 @@ public class Player : MonoBehaviour
         {
             walking = false;
         }
-        if (Input.GetKey(KeyCode.A)) // going left with the A key
+        if (Input.GetKey(KeyCode.A) && gemJump == false) // going left with the A key
         {
             transform.position = new Vector3(transform.position.x - moveSpeed * Time.deltaTime, transform.position.y);
             sprite.flipX = true; // make the character face left
@@ -149,6 +150,14 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.GetComponent<BossScript>()) // if we touched the boss gem
+        {
+            gemJump = true; // this bool makes us not able to move
+        }
+        else
+        {
+            gemJump = false; // until we touch something else
+        }
         jumping = false; // when we collide with anything, we're more or less grounded
         if (collision.gameObject.GetComponent<FloatingPlatform>())
         {

@@ -43,8 +43,9 @@ public class KeyFollow : MonoBehaviour
         {
             player = collision.gameObject.transform; // set player transfrom dynamicly
             collected = true;
-            GetComponent<ItemMovement>().enabled = false; // disable other movements
+            //GetComponent<ItemMovement>().enabled = false; // disable other movements
         }
         GetComponent<Rigidbody2D>().gravityScale = 0; // disable gravity
+        GetComponent<PolygonCollider2D>().isTrigger = true;
     }
 }

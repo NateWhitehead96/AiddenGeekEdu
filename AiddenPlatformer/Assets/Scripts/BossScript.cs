@@ -17,6 +17,7 @@ public class BossScript : MonoBehaviour
     public float leftBounds, rightBounds; // how far left and right the head can move
     public float speed; // how fast the head moves
     int direction = 1; // direction the head will go in
+    public GameObject heart; // a heart the boss will give to the player when phase 2 starts
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +80,8 @@ public class BossScript : MonoBehaviour
                     healthChunks[i].SetActive(true);
                 }
                 health = 5; // restore health to 5
+                heart.SetActive(true);
+                heart.GetComponent<BossHeart>().LaunchHeart();
             }
         }
     }
