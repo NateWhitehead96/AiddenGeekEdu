@@ -19,6 +19,7 @@ public class BossTrigger : MonoBehaviour
 
     public PlayableDirector bossDeath; // for when the boss dies
     public GameObject keyGem; // our key to opening the final door :)
+    public ParticleSystem wallDust1, wallDust2; // dusts
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +64,8 @@ public class BossTrigger : MonoBehaviour
             fightingBoss = true;
             bossCanvas.SetActive(true);
             director.Play();
+            wallDust1.Play();
+            wallDust2.Play();
         }
         GetComponent<BoxCollider2D>().enabled = false; // disable the collider
     }
