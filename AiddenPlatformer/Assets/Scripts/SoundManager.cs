@@ -20,4 +20,9 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource coinPickup;
     public AudioSource playerHurt;
+    public AudioSource checkPoint;
+
+    public float volume; // some volume for our sound effects
+
+
 }
