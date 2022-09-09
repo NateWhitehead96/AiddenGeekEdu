@@ -20,4 +20,14 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource coinPickup;
     public AudioSource playerHurt;
+
+    public float musicVolume;
+    public float soundFXVolume;
+
+    private void Update()
+    {
+        // all sound fx volumes equal the sound fx
+        coinPickup.volume = soundFXVolume;
+        playerHurt.volume = soundFXVolume;
+    }
 }

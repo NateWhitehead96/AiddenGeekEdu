@@ -5,6 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class ButtonMaster : MonoBehaviour
 {
+    public GameObject settingsCanvas;
+
+    private void Start()
+    {
+        settingsCanvas = FindObjectOfType<SettingsMenu>().gameObject; // set the settings canvas, will only work for main menu
+        if(settingsCanvas != null) // if there is one
+        {
+            settingsCanvas.SetActive(false); // hide it
+        }
+    }
+
+    public void OpenSettings() // open settings, close main menu
+    {
+        settingsCanvas.SetActive(true);
+        gameObject.SetActive(false);
+    }
+
     public void ResumeGame() // resume game from pause state
     {
         Time.timeScale = 1; // unpause the game, allows for scripts to update
