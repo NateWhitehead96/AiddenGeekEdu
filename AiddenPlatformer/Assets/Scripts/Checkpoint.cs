@@ -14,6 +14,7 @@ public class Checkpoint : MonoBehaviour
         {
             effect.Play();
             activated = true;
+            SoundManager.instance.checkPoint.Play();
             collision.gameObject.GetComponent<Player>().Health = 3; // restore player to full health
         }
     }

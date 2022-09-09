@@ -130,14 +130,18 @@ public class Player : MonoBehaviour
         {
             GameManager.instance.Lives--; // subtract a life
             // check to see if lives is less than 0
-            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level4"))
+            if(GameManager.instance.Lives <= 0)
+            {
+                StartCoroutine(DyingFade());
+            }
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level4") && GameManager.instance.Lives > 0)
             {
                 FindObjectOfType<AutoscrollingPlatform>().transform.position = FindObjectOfType<AutoscrollingPlatform>().startPos;
                 FindObjectOfType<AutoscrollingPlatform>().playerOn = false;
                 FindObjectOfType<AutoscrollingPlatform>().currentPoint = Checkpoint.gameObject.GetComponent<Level4Checkpoint>().platformPoint;
                 transform.parent = null;
             }
-            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level5")) // if we die to boss, simply restart the level
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level5") && GameManager.instance.Lives > 0) // if we die to boss, simply restart the level
             {
                 SceneManager.LoadScene("Level5");
             }
@@ -146,6 +150,13 @@ public class Player : MonoBehaviour
         }
         yield return new WaitForSeconds(1);
         animator.SetBool("isHurt", false); // turn hurt animation off
+    }
+    IEnumerator DyingFade()
+    {
+        GetComponent<BoxCollider2D>().isTrigger = true; // this will make the character fall through the level
+        FindObjectOfType<TransitionCanvas>().anim.SetBool("dying", true); // play dying fade
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("LoseScene"); // load the lose screen
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -217,6 +228,7 @@ public class Player : MonoBehaviour
         {
             transform.position = Checkpoint.position; // reset our position
             GameManager.instance.Lives--;
+            StartCoroutine(DyingFade());
             Health = 3;
         }
         if (collision.gameObject.CompareTag("Heart")) 
