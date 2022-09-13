@@ -22,7 +22,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource playerHurt;
     public AudioSource checkPoint;
 
-    public float volume; // some volume for our sound effects
-
+    public float soundFXVolume; // some volume for our sound effects
+    public float musicVolume;
 
 }

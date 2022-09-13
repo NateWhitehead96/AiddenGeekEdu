@@ -176,7 +176,8 @@ MonoBehaviour:
   coinPickup: {fileID: 7603679998666274650}
   playerHurt: {fileID: 7603679999447687297}
   checkPoint: {fileID: 3849208683109772362}
-  volume: 0
+  soundFXVolume: 0.5
+  musicVolume: 0.5
 --- !u!1 &7603679998666274653
 GameObject:
   m_ObjectHideFlags: 0
