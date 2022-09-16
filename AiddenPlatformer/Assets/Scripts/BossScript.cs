@@ -90,6 +90,7 @@ public class BossScript : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Player>())
         {
+            SoundManager.instance.explosion.Play();
             collision.gameObject.GetComponent<Player>().jumping = true; // hopefully activate the animation and lock us from double jumping
             if (collision.gameObject.transform.position.x < transform.position.x) // left hitting gem
             {

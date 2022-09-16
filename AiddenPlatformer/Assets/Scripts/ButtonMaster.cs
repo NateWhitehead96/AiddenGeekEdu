@@ -9,7 +9,7 @@ public class ButtonMaster : MonoBehaviour
 
     private void Start()
     {
-        settingsCanvas = FindObjectOfType<SettingsMenu>().gameObject; // set the settings canvas, will only work for main menu
+        
         if(settingsCanvas != null) // if there is one
         {
             settingsCanvas.SetActive(false); // hide it

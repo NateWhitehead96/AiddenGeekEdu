@@ -240,6 +240,7 @@ public class Player : MonoBehaviour
                 Health = 3;
             }
             Destroy(collision.gameObject); // destroy heart
+            SoundManager.instance.heartPickup.Play(); // play sound effect
         }
         if (collision.gameObject.CompareTag("Ladder")) // on the ladder
         {

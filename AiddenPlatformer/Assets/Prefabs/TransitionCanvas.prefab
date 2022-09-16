@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 9160208454151421260}
   - component: {fileID: 9160208454151421257}
   - component: {fileID: 9160208454151421258}
+  - component: {fileID: 7497253680524816148}
   m_Layer: 5
   m_Name: FadeImage
   m_TagString: Untagged
@@ -222,3 +223,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 9160208454151421257}
+--- !u!225 &7497253680524816148
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9160208454151421262}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0

@@ -2342,7 +2342,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.97
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -2845,6 +2845,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 224769506, guid: 2ba47212e0fc1084aaf50ff08c36a1ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 521458382, guid: 2ba47212e0fc1084aaf50ff08c36a1ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 556929907, guid: 2ba47212e0fc1084aaf50ff08c36a1ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 856051606, guid: 2ba47212e0fc1084aaf50ff08c36a1ce, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bf6c5cd1b7155e24380ba6704966928b, type: 3}
+    - target: {fileID: 1102073316, guid: 2ba47212e0fc1084aaf50ff08c36a1ce, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bf6c5cd1b7155e24380ba6704966928b, type: 3}
+    - target: {fileID: 1214252605, guid: 2ba47212e0fc1084aaf50ff08c36a1ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1460513678, guid: 2ba47212e0fc1084aaf50ff08c36a1ce, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6148774846756329186, guid: 2ba47212e0fc1084aaf50ff08c36a1ce, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6148774846756329186, guid: 2ba47212e0fc1084aaf50ff08c36a1ce, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.8578218
+      objectReference: {fileID: 0}
+    - target: {fileID: 6148774846756329186, guid: 2ba47212e0fc1084aaf50ff08c36a1ce, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.8867924
+      objectReference: {fileID: 0}
+    - target: {fileID: 6148774846756329186, guid: 2ba47212e0fc1084aaf50ff08c36a1ce, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.28862584
+      objectReference: {fileID: 0}
     - target: {fileID: 9011546436025173560, guid: 2ba47212e0fc1084aaf50ff08c36a1ce, type: 3}
       propertyPath: m_RootOrder
       value: 0
