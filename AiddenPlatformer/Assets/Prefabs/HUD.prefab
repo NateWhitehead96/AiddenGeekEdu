@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 1128977019}
   - component: {fileID: 1128977021}
   - component: {fileID: 1128977020}
+  - component: {fileID: 3027123973267963485}
   m_Layer: 5
   m_Name: LivesCounter
   m_TagString: Untagged
@@ -154,6 +155,21 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: x 99
+--- !u!114 &3027123973267963485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128977018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1944132317
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +181,7 @@ GameObject:
   - component: {fileID: 1944132318}
   - component: {fileID: 1944132320}
   - component: {fileID: 1944132319}
+  - component: {fileID: 4955449254323039038}
   m_Layer: 5
   m_Name: ScoreText
   m_TagString: Untagged
@@ -233,6 +250,21 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Score: 99999'
+--- !u!114 &4955449254323039038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944132317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &666242751336091914
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,6 +786,7 @@ GameObject:
   - component: {fileID: 5219242189014185717}
   - component: {fileID: 1931734987926576971}
   - component: {fileID: 2311370999367037636}
+  - component: {fileID: 6405632171971618285}
   m_Layer: 5
   m_Name: TimeText
   m_TagString: Untagged
@@ -822,3 +855,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Timer: 99999'
+--- !u!114 &6405632171971618285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2485706568534397717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
