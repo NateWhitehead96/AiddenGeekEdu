@@ -24,7 +24,7 @@ public class HUBController : MonoBehaviour
         }
         for (int i = 0; i < doors.Length; i++) // to control what doors are open
         {
-            if(GameManager.instance.LevelsBeaten > i)
+            if(GameManager.instance.LevelsBeaten > i) // levels beaten has to be higher than i to open that door
             {
                 doors[i].GetComponentInChildren<SpriteRenderer>().sprite = openDoorSprite;
             }
