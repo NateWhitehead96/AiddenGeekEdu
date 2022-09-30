@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ButtonMaster : MonoBehaviour
 {
     public GameObject settingsCanvas;
-
+    public GameObject playCanvas; // for main menu
     private void Start()
     {
         
@@ -43,7 +43,8 @@ public class ButtonMaster : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("Lives")) // more to check if we have save data, Lives would be in that
         {
-            ReturnToHub(); // load hubworld
+            //ReturnToHub(); // load hubworld
+            playCanvas.SetActive(true); // show the play options
         }
         else // no save data
         {
@@ -54,5 +55,10 @@ public class ButtonMaster : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit(); // this closes the game, but only works in a standalone build (not in editor)
+    }
+
+    public void LoadTutorial()
+    {
+        SceneManager.LoadScene("TutorialLevel"); // load tutorial level
     }
 }

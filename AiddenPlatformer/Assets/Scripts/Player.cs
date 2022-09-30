@@ -228,7 +228,7 @@ public class Player : MonoBehaviour
         {
             transform.position = Checkpoint.position; // reset our position
             GameManager.instance.Lives--;
-            StartCoroutine(DyingFade());
+            //StartCoroutine(DyingFade());
             Health = 3;
         }
         if (collision.gameObject.CompareTag("Heart")) 

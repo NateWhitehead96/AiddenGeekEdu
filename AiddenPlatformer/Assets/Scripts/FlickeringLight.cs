@@ -19,9 +19,9 @@ public class FlickeringLight : MonoBehaviour
     {
         if (timer <= 0)
         {
-            glow.intensity = Random.Range(0.5f, 3.5f);
+            glow.intensity = Random.Range(0.5f, 3.5f); // make the light bright/dim randomly
 
-            timer = Random.Range(0.1f, 0.5f);
+            timer = Random.Range(0.1f, 0.5f); // randomly pick a new time to flick
         }
         timer -= Time.deltaTime;
 
